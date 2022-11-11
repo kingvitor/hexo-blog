@@ -156,3 +156,63 @@
 
 
 
+## 6 搭建过程问题解决
+
+### 6.1浏览 localhost:4000出现文本
+
+（原因是[hexo](https://so.csdn.net/so/search?q=hexo&spm=1001.2101.3001.7020)在5.0之后把swig给删除了需要自己手动安装）
+
+**问题现象**
+
+![img](https://img-blog.csdnimg.cn/d75aa3981183496aa03f112dc81ceab8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQ0RMX0x1RmVp,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+**解决方法**
+
+>npm i hexo-renderer-swig
+
+![image-20221110212249043](../images/hexo搭建博客/image-20221110212249043-1668154311736.png)
+
+### 6.2 Markdown 上的本地图片无法显示
+
+图片的相对路径问题
+
+**图片路径问题**：图片不显示
+
+![image-20221111142746603](../images/hexo搭建博客/image-20221111142746603.png)
+
+
+
+**问题解决**
+
+1、安装npm i hexo-renderer-marked
+
+> npm i hexo-renderer-marked
+
+![image-20221111143004556](../images/hexo搭建博客/image-20221111143004556.png)
+
+2、在自己的博客source路径下新建文件夹images文件夹
+
+![image-20221111143124216](../images/hexo搭建博客/image-20221111143124216.png)
+
+3、在typora(Markdown编辑器),进入到 文件–>偏好设置–>图像，然后选择复制到指定路径，选到上面新建的images文件夹路径，勾选下面红框的选项
+
+![image-20221111143233994](../images/hexo搭建博客/image-20221111143233994.png)
+
+4、修改配置文件**_config.yml**
+
+4.1 修改：
+
+> post_asset_folder: true
+
+4.2 添加下面配置：
+
+>  marked:
+>
+> ​		prependRoot: true
+>
+> ​		postAsset: true
+
+完成以上步骤，每次复制的图片就是相对路径的了	
+
+
+
